@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "tWm3NM60KwmHF8t6XIbdY2jdc+g+gp+RCnW8jt8VIwgaJgXyvupF8+KKllSumce2sFh5X55n5vm0RUBcuDBv3w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader\\ModSources\\ReturnByDeath\\ReturnByDeath.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\caela\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}
