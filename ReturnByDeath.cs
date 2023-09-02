@@ -112,6 +112,12 @@ namespace ReturnByDeath
 
                     
                     System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", Main.LocalPlayer.position.X.ToString() + "\n" + Main.LocalPlayer.position.Y.ToString() + "\n" + Main.LocalPlayer.fallStart.ToString() + "\n" + Main.LocalPlayer.fallStart2.ToString() + "");
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLife.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLifeMax.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLifeMax2.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statMana.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statManaMax.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statManaMax2.ToString());
                     /*System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "X", Main.LocalPlayer.position.X.ToString());
                     System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "Y", Main.LocalPlayer.position.Y.ToString());
                     System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "FallStart", Main.LocalPlayer.fallStart.ToString());
@@ -321,7 +327,7 @@ namespace ReturnByDeath
                 Main.LocalPlayer.boneGloveItem = playerFile.Player.boneGloveItem;
                 Main.LocalPlayer.boneGloveTimer = playerFile.Player.boneGloveTimer;
                 //CHECKTHIS DEATH CODE
-                /*
+                
                Main.LocalPlayer.brainOfConfusionDodgeAnimationCounter = playerFile.Player.brainOfConfusionDodgeAnimationCounter;
                Main.LocalPlayer.brainOfConfusionItem = playerFile.Player.brainOfConfusionItem;
                Main.LocalPlayer.breath = playerFile.Player.breath;
@@ -444,10 +450,10 @@ namespace ReturnByDeath
                Main.LocalPlayer.dashType = playerFile.Player.dashType;
                Main.LocalPlayer.dazed = playerFile.Player.dazed;
                Main.LocalPlayer.dd2Accessory = playerFile.Player.dd2Accessory;
-                */
+                
                 //DEATH CODE BELOW
                 //Main.LocalPlayer.dead = playerFile.Player.dead; NOT THIS
-                /*
+                
                 Main.LocalPlayer.DeadlySphereMinion = playerFile.Player.DeadlySphereMinion;
                 Main.LocalPlayer.defendedByPaladin = playerFile.Player.defendedByPaladin;
                 Main.LocalPlayer.DefenseEffectiveness = playerFile.Player.DefenseEffectiveness;
@@ -493,8 +499,8 @@ namespace ReturnByDeath
                 Main.LocalPlayer.environmentBuffImmunityTimer = playerFile.Player.environmentBuffImmunityTimer;
                 Main.LocalPlayer.eocDash = playerFile.Player.eocDash;
                 Main.LocalPlayer.eocHit = playerFile.Player.eocHit;
-                */
-                /*
+                
+                
                 Main.LocalPlayer.equipmentBasedLuckBonus = playerFile.Player.equipmentBasedLuckBonus;
                 Main.LocalPlayer.equippedAnyTileRangeAcc = playerFile.Player.equippedAnyTileRangeAcc;
                 Main.LocalPlayer.equippedAnyTileSpeedAcc = playerFile.Player.equippedAnyTileSpeedAcc;
@@ -511,7 +517,7 @@ namespace ReturnByDeath
                 Main.LocalPlayer.faceFlower = playerFile.Player.faceFlower;
                 Main.LocalPlayer.faceHead = playerFile.Player.faceHead;
                 Main.LocalPlayer.fairyBoots = playerFile.Player.fairyBoots;
-                */
+                
                 
                 Main.LocalPlayer.fartKartCloudDelay = playerFile.Player.fartKartCloudDelay;
                 Main.LocalPlayer.findTreasure = playerFile.Player.findTreasure;
@@ -1015,10 +1021,10 @@ namespace ReturnByDeath
                  Main.LocalPlayer.slippy = playerFile.Player.slippy;
                  Main.LocalPlayer.slippy2 = playerFile.Player.slippy2;
                  Main.LocalPlayer.sloping = playerFile.Player.sloping;
-                /*//
+                
 
                //Whatever Sent me in orbit is above
-               /*
+               
                Main.LocalPlayer.slotsMinions = playerFile.Player.slotsMinions;
                Main.LocalPlayer.slow = playerFile.Player.slow;
                Main.LocalPlayer.slowFall = playerFile.Player.slowFall;
@@ -1067,12 +1073,7 @@ namespace ReturnByDeath
                Main.LocalPlayer.stardustMonolithShader = playerFile.Player.stardustMonolithShader;
                Main.LocalPlayer.starving = playerFile.Player.starving;
                Main.LocalPlayer.statDefense = playerFile.Player.statDefense;
-               Main.LocalPlayer.statLife = playerFile.Player.statLife;
-               Main.LocalPlayer.statLifeMax = playerFile.Player.statLifeMax;
-               Main.LocalPlayer.statLifeMax2 = playerFile.Player.statLifeMax2;
-               Main.LocalPlayer.statMana = playerFile.Player.statMana;
-               Main.LocalPlayer.statManaMax = playerFile.Player.statManaMax;
-               Main.LocalPlayer.statManaMax2 = playerFile.Player.statManaMax2;
+               
                Main.LocalPlayer.stealth = playerFile.Player.stealth;
                Main.LocalPlayer.stealthTimer = playerFile.Player.stealthTimer;
                Main.LocalPlayer.step = playerFile.Player.step;
@@ -1189,7 +1190,7 @@ namespace ReturnByDeath
                Main.LocalPlayer._portalPhysicsTime = playerFile.Player._portalPhysicsTime;
                Main.LocalPlayer.Center = playerFile.Player.Center;
 
-               */
+               
 
 
 
@@ -1199,6 +1200,12 @@ namespace ReturnByDeath
                 Main.LocalPlayer.position.Y = float.Parse(a.ReadLine());
                 Main.LocalPlayer.fallStart = int.Parse(a.ReadLine()); //GRAVIGTY DEATH
                 Main.LocalPlayer.fallStart2 = int.Parse(a.ReadLine()); //GRAVITY DEATH
+                Main.LocalPlayer.statLife = int.Parse(a.ReadLine()); ;
+                Main.LocalPlayer.statLifeMax = int.Parse(a.ReadLine()); ;
+                Main.LocalPlayer.statLifeMax2 = int.Parse(a.ReadLine()); ;
+                Main.LocalPlayer.statMana = int.Parse(a.ReadLine()); ;
+                Main.LocalPlayer.statManaMax = int.Parse(a.ReadLine()); ;
+                Main.LocalPlayer.statManaMax2 = int.Parse(a.ReadLine()); ;
                 a.Close();
                 Main.LocalPlayer.HealEffect(50);
                 return base.OnPickup(item);
