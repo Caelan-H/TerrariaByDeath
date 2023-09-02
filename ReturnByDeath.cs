@@ -550,8 +550,8 @@ namespace ReturnByDeath
                 Main.LocalPlayer.gravControl = playerFile.Player.gravControl;
                 Main.LocalPlayer.gravControl2 = playerFile.Player.gravControl2;
                 Main.LocalPlayer.gravDir = playerFile.Player.gravDir;
-               // Main.LocalPlayer.gravity = playerFile.Player.gravity; NOT THIS
-               /*
+                Main.LocalPlayer.gravity = playerFile.Player.gravity; //NOT THIS
+               
                 Main.LocalPlayer.greenFairy = playerFile.Player.greenFairy;
                 Main.LocalPlayer.grinch = playerFile.Player.grinch;
                 Main.LocalPlayer.gross = playerFile.Player.gross;
@@ -571,7 +571,7 @@ namespace ReturnByDeath
                 Main.LocalPlayer.HasGardenGnomeNearby = playerFile.Player.HasGardenGnomeNearby;
                 Main.LocalPlayer.hasLuckyCoin = playerFile.Player.hasLuckyCoin;
                 Main.LocalPlayer.hasLuck_LuckyCoin = playerFile.Player.hasLuck_LuckyCoin;
-               */
+               
                 // CHECK ABOVE DEATH CODE
 
                 //ORBIT IS BELOW             
