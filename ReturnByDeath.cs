@@ -104,9 +104,7 @@ namespace ReturnByDeath
                     /* IMPORTANT SWAP SECTION FOR POSITION*/
                     //checkPointPosition = Main.LocalPlayer.position;
                     //checkPointBodyPosition.
-                    //checkPointBodyPosition = Main.LocalPlayer.bodyPosition;
-                    //checkPointBodyRotation = Main.LocalPlayer.bodyRotation;
-                    //checkPointBodyVelocity = Main.LocalPlayer.bodyVelocity;
+                    
                     //checkPointFallStart = Main.LocalPlayer.fallStart;
                     //checkPointFallStart2 = Main.LocalPlayer.fallStart2;
 
@@ -117,12 +115,71 @@ namespace ReturnByDeath
                     System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLifeMax2.ToString());
                     System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statMana.ToString());
                     System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statManaMax.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statManaMax2.ToString());
-                    /*System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "X", Main.LocalPlayer.position.X.ToString());
-                    System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "Y", Main.LocalPlayer.position.Y.ToString());
-                    System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "FallStart", Main.LocalPlayer.fallStart.ToString());
-                    System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "FallStart2", Main.LocalPlayer.fallStart2.ToString());
-                   */
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statManaMax2.ToString());  
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyPosition.X.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyPosition.Y.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyRotation.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyVelocity.X.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyVelocity.Y.ToString());
+
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.aggro.ToString());    
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.blockExtraJumps.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.breath.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.breathCD.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.breathMax.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.dash.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.dashDelay.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.delayUseItem.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.desertDash.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.sailDash.ToString());                  
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.direction.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.forceMerman.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.forceWerewolf.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.immuneTime.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaCD.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaImmune.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaMax.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaTime.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.manaSick.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.manaSickReduction.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.potionDelay.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.potionDelayTime.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketBoots.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketDelay.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketDelay2.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketFrame.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketRelease.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketSoundDelay.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketTime.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketTimeMax.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.starCloakCooldown.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.suffocateDelay.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.suffocating.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.swimTime.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.velocity.X.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.velocity.Y.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingAccRunSpeed.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingFrame.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingFrameCounter.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingRunAccelerationMult.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wings.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingsLogic.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingTime.ToString());
+                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingTimeMax.ToString());
+
+
+
+
+
+
+
+
+
+
+
+                    //checkPointBodyPosition = Main.LocalPlayer.bodyPosition;
+                    //checkPointBodyRotation = Main.LocalPlayer.bodyRotation;
+                    //checkPointBodyVelocity = Main.LocalPlayer.bodyVelocity;
                     return base.OnPickup(item);
                 }
                 else
@@ -1200,12 +1257,65 @@ namespace ReturnByDeath
                 Main.LocalPlayer.position.Y = float.Parse(a.ReadLine());
                 Main.LocalPlayer.fallStart = int.Parse(a.ReadLine()); //GRAVIGTY DEATH
                 Main.LocalPlayer.fallStart2 = int.Parse(a.ReadLine()); //GRAVITY DEATH
-                Main.LocalPlayer.statLife = int.Parse(a.ReadLine()); ;
-                Main.LocalPlayer.statLifeMax = int.Parse(a.ReadLine()); ;
-                Main.LocalPlayer.statLifeMax2 = int.Parse(a.ReadLine()); ;
+                Main.LocalPlayer.statLife = int.Parse(a.ReadLine()); 
+                Main.LocalPlayer.statLifeMax = int.Parse(a.ReadLine()); 
+                Main.LocalPlayer.statLifeMax2 = int.Parse(a.ReadLine()); 
                 Main.LocalPlayer.statMana = int.Parse(a.ReadLine()); ;
-                Main.LocalPlayer.statManaMax = int.Parse(a.ReadLine()); ;
-                Main.LocalPlayer.statManaMax2 = int.Parse(a.ReadLine()); ;
+                Main.LocalPlayer.statManaMax = int.Parse(a.ReadLine()); 
+                Main.LocalPlayer.statManaMax2 = int.Parse(a.ReadLine());                 Main.LocalPlayer.bodyPosition.X = float.Parse(a.ReadLine());
+                Main.LocalPlayer.bodyPosition.Y = float.Parse(a.ReadLine());
+                Main.LocalPlayer.bodyRotation = float.Parse(a.ReadLine());
+                Main.LocalPlayer.bodyVelocity.X = float.Parse(a.ReadLine());
+                Main.LocalPlayer.bodyVelocity.Y = float.Parse(a.ReadLine());
+                Main.LocalPlayer.aggro = int.Parse(a.ReadLine());
+                Main.LocalPlayer.blockExtraJumps = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.breath = int.Parse(a.ReadLine());
+                Main.LocalPlayer.breathCD = int.Parse(a.ReadLine());
+                Main.LocalPlayer.breathMax = int.Parse(a.ReadLine());
+                Main.LocalPlayer.dash = int.Parse(a.ReadLine());
+                Main.LocalPlayer.dashDelay = int.Parse(a.ReadLine());
+                Main.LocalPlayer.delayUseItem = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.desertDash = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.sailDash = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.direction = int.Parse(a.ReadLine());
+                Main.LocalPlayer.forceMerman = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.forceWerewolf = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.immuneTime = int.Parse(a.ReadLine());
+                Main.LocalPlayer.lavaCD = int.Parse(a.ReadLine());
+                Main.LocalPlayer.lavaImmune = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.lavaMax = int.Parse(a.ReadLine());
+                Main.LocalPlayer.lavaTime = int.Parse(a.ReadLine());
+                Main.LocalPlayer.manaSick = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.manaSickReduction = float.Parse(a.ReadLine());
+                Main.LocalPlayer.potionDelay = int.Parse(a.ReadLine());
+                Main.LocalPlayer.potionDelayTime = int.Parse(a.ReadLine());
+                Main.LocalPlayer.rocketBoots = int.Parse(a.ReadLine());
+                Main.LocalPlayer.rocketDelay = int.Parse(a.ReadLine());
+                Main.LocalPlayer.rocketDelay2 = int.Parse(a.ReadLine());
+                Main.LocalPlayer.rocketFrame = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.rocketRelease = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.rocketSoundDelay = int.Parse(a.ReadLine());
+                Main.LocalPlayer.rocketTime = int.Parse(a.ReadLine());
+                Main.LocalPlayer.rocketTimeMax = int.Parse(a.ReadLine());
+                Main.LocalPlayer.starCloakCooldown = int.Parse(a.ReadLine());
+                Main.LocalPlayer.suffocateDelay = byte.Parse(a.ReadLine());
+                Main.LocalPlayer.suffocating = bool.Parse(a.ReadLine());
+                Main.LocalPlayer.swimTime = int.Parse(a.ReadLine());
+                Main.LocalPlayer.velocity.X = float.Parse(a.ReadLine());
+                Main.LocalPlayer.velocity.Y = float.Parse(a.ReadLine());
+                Main.LocalPlayer.wingAccRunSpeed = float.Parse(a.ReadLine());
+                Main.LocalPlayer.wingFrame = int.Parse(a.ReadLine());
+                Main.LocalPlayer.wingFrameCounter = int.Parse(a.ReadLine());
+                Main.LocalPlayer.wingRunAccelerationMult = float.Parse(a.ReadLine());
+                Main.LocalPlayer.wings = int.Parse(a.ReadLine());
+                Main.LocalPlayer.wingsLogic = int.Parse(a.ReadLine());
+                Main.LocalPlayer.wingTime = float.Parse(a.ReadLine());
+                Main.LocalPlayer.wingTimeMax = int.Parse(a.ReadLine());
+
+
+
+
+
                 a.Close();
                 Main.LocalPlayer.HealEffect(50);
                 return base.OnPickup(item);
