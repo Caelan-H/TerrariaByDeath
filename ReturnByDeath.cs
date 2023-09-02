@@ -26,7 +26,12 @@ namespace ReturnByDeath
 {
 	public class ReturnByDeath : ModPlayer
 	{
-        public static Vector2 checkPointPosition; 
+        public static int checkPointFallStart;
+        public static int checkPointFallStart2;
+        public static Vector2 checkPointPosition;
+        public static Vector2 checkPointBodyPosition;
+        public static float checkPointBodyRotation;
+        public static Vector2 checkPointBodyVelocity;
         public ReturnByDeath()
         {
            
@@ -97,6 +102,11 @@ namespace ReturnByDeath
 
                     Main.LocalPlayer.HealEffect(50);
                     checkPointPosition = Main.LocalPlayer.position;
+                    checkPointBodyPosition = Main.LocalPlayer.bodyPosition;
+                    checkPointBodyRotation = Main.LocalPlayer.bodyRotation;
+                    checkPointBodyVelocity = Main.LocalPlayer.bodyVelocity;
+                    checkPointFallStart = Main.LocalPlayer.fallStart;
+                    checkPointFallStart2 = Main.LocalPlayer.fallStart2;
                     return base.OnPickup(item);
                 }
                 else
@@ -186,7 +196,7 @@ namespace ReturnByDeath
                 
                 Main.LocalPlayer.inventory = playerFile.Player.inventory;
                 //CODE THAT PREVENTS MOVEMENT AFTER PICKUP INSIDE
-                /*
+                
                 Main.LocalPlayer.abigailMinion = playerFile.Player.abigailMinion;
                 Main.LocalPlayer.accCalendar = playerFile.Player.accCalendar;
                 Main.LocalPlayer.accCompass = playerFile.Player.accCompass;
@@ -211,7 +221,7 @@ namespace ReturnByDeath
                 Main.LocalPlayer.accThirdEyeNumber = playerFile.Player.accThirdEyeNumber;
                 Main.LocalPlayer.accWatch  = playerFile.Player.accWatch;
                 Main.LocalPlayer.accWeatherRadio = playerFile.Player.accWeatherRadio;
-                Main.LocalPlayer.active = playerFile.Player.active;
+                //Main.LocalPlayer.active = playerFile.Player.active;
                 Main.LocalPlayer.ActuationRodLock = playerFile.Player.ActuationRodLock;
                 Main.LocalPlayer.ActuationRodLockSetting = playerFile.Player.ActuationRodLockSetting;
                 Main.LocalPlayer.adjHoney = playerFile.Player.adjHoney;
@@ -226,6 +236,8 @@ namespace ReturnByDeath
                 Main.LocalPlayer.ammoCost75 = playerFile.Player.ammoCost75;
                 Main.LocalPlayer.ammoCost80 = playerFile.Player.ammoCost80;
                 Main.LocalPlayer.ammoPotion = playerFile.Player.ammoPotion;
+                
+                //CODE THAT FREEZES ABOVE
                 Main.LocalPlayer.anglerQuestsFinished = playerFile.Player.anglerQuestsFinished;
                 Main.LocalPlayer.anglerSetSpawnReduction = playerFile.Player.anglerSetSpawnReduction;
                 Main.LocalPlayer.archery = playerFile.Player.archery;
@@ -288,135 +300,142 @@ namespace ReturnByDeath
                 Main.LocalPlayer.body = playerFile.Player.body;
                 Main.LocalPlayer.bodyFrame = playerFile.Player.bodyFrame;
                 Main.LocalPlayer.bodyFrameCounter = playerFile.Player.bodyFrameCounter;
-                Main.LocalPlayer.bodyPosition = playerFile.Player.bodyPosition;
-                Main.LocalPlayer.bodyRotation = playerFile.Player.bodyRotation;
-                Main.LocalPlayer.bodyVelocity = playerFile.Player.bodyVelocity;
+                // FIXED ORBIT ISSUE, what about pause?
+                Main.LocalPlayer.bodyPosition = checkPointBodyPosition;
+                Main.LocalPlayer.bodyRotation = checkPointBodyRotation;
+                Main.LocalPlayer.bodyVelocity = checkPointBodyVelocity;
+                //
                 Main.LocalPlayer.boneArmor = playerFile.Player.boneArmor;
                 Main.LocalPlayer.boneGloveItem = playerFile.Player.boneGloveItem;
                 Main.LocalPlayer.boneGloveTimer = playerFile.Player.boneGloveTimer;
-                Main.LocalPlayer.brainOfConfusionDodgeAnimationCounter = playerFile.Player.brainOfConfusionDodgeAnimationCounter;
-                Main.LocalPlayer.brainOfConfusionItem = playerFile.Player.brainOfConfusionItem;
-                Main.LocalPlayer.breath = playerFile.Player.breath;
-                Main.LocalPlayer.breathCD = playerFile.Player.breathCD;
-                Main.LocalPlayer.breathMax = playerFile.Player.breathMax;
-                Main.LocalPlayer.brokenArmor = playerFile.Player.brokenArmor;
-                Main.LocalPlayer.buffImmune = playerFile.Player.buffImmune;
-                Main.LocalPlayer.buffTime = playerFile.Player.buffTime;
-                Main.LocalPlayer.buffType = playerFile.Player.buffType;
-                Main.LocalPlayer.builderAccStatus = playerFile.Player.builderAccStatus;
-                Main.LocalPlayer.bulletDamage = playerFile.Player.bulletDamage;
-                Main.LocalPlayer.bunny = playerFile.Player.bunny;
-                Main.LocalPlayer.burned = playerFile.Player.burned;
-                Main.LocalPlayer.cactusThorns = playerFile.Player.cactusThorns;
-                Main.LocalPlayer.calmed = playerFile.Player.calmed;
-                Main.LocalPlayer.canCarpet = playerFile.Player.canCarpet;
-                Main.LocalPlayer.canFloatInWater = playerFile.Player.canFloatInWater;
-                Main.LocalPlayer.cAngelHalo = playerFile.Player.cAngelHalo;
-                Main.LocalPlayer.canRocket = playerFile.Player.canRocket;
-                Main.LocalPlayer.CanSeeInvisibleBlocks = playerFile.Player.CanSeeInvisibleBlocks;
-                Main.LocalPlayer.carpet = playerFile.Player.carpet;
-                Main.LocalPlayer.carpetFrame = playerFile.Player.carpetFrame;
-                Main.LocalPlayer.carpetFrameCounter = playerFile.Player.carpetFrameCounter;
-                Main.LocalPlayer.carpetTime = playerFile.Player.carpetTime;
-                Main.LocalPlayer.cartFlip = playerFile.Player.cartFlip;
-                Main.LocalPlayer.cartRampTime = playerFile.Player.cartRampTime;
-                Main.LocalPlayer.cBack = playerFile.Player.cBack;
-                Main.LocalPlayer.cBackpack = playerFile.Player.cBackpack;
-                Main.LocalPlayer.cBalloon = playerFile.Player.cBalloon;
-                Main.LocalPlayer.cBalloonFront = playerFile.Player.cBalloonFront;
-                Main.LocalPlayer.cBeard = playerFile.Player.cBeard;
-                Main.LocalPlayer.cBody = playerFile.Player.cBody;
-                Main.LocalPlayer.cCarpet = playerFile.Player.cCarpet;
-                Main.LocalPlayer.cFace = playerFile.Player.cFace;
-                Main.LocalPlayer.cFaceFlower = playerFile.Player.cFaceFlower;
-                Main.LocalPlayer.cFaceHead = playerFile.Player.cFaceHead;
-                Main.LocalPlayer.cFlameWaker = playerFile.Player.cFlameWaker;
-                Main.LocalPlayer.cFloatingTube = playerFile.Player.cFloatingTube;
-                Main.LocalPlayer.cFront = playerFile.Player.cFront;
-                Main.LocalPlayer.cGrapple = playerFile.Player.cGrapple;
-                Main.LocalPlayer.cHandOff = playerFile.Player.cHandOff;
-                Main.LocalPlayer.cHandOn = playerFile.Player.cHandOn;
-                Main.LocalPlayer.changeItem = playerFile.Player.changeItem;
-                Main.LocalPlayer.channel = playerFile.Player.channel;
-                Main.LocalPlayer.chaosState = playerFile.Player.chaosState;
-                Main.LocalPlayer.chatOverhead = playerFile.Player.chatOverhead;
-                Main.LocalPlayer.cHead = playerFile.Player.cHead;
-                Main.LocalPlayer.chest = playerFile.Player.chest;
-                Main.LocalPlayer.chestX = playerFile.Player.chestX;
-                Main.LocalPlayer.chestY = playerFile.Player.chestY;
-                Main.LocalPlayer.chilled = playerFile.Player.chilled;
-                Main.LocalPlayer.chiselSpeed = playerFile.Player.chiselSpeed;
-                Main.LocalPlayer.chloroAmmoCost80 = playerFile.Player.chloroAmmoCost80;
-                Main.LocalPlayer.CircularRadial = playerFile.Player.CircularRadial;
-                Main.LocalPlayer.cLegs = playerFile.Player.cLegs;
-                Main.LocalPlayer.cLeinShampoo = playerFile.Player.cLeinShampoo;
-                Main.LocalPlayer.cLight = playerFile.Player.cLight;
-                Main.LocalPlayer.cMinecart = playerFile.Player.cMinecart;
-                Main.LocalPlayer.cMinion = playerFile.Player.cMinion;
-                Main.LocalPlayer.cMount = playerFile.Player.cMount;
-                Main.LocalPlayer.cNeck = playerFile.Player.cNeck;
-                Main.LocalPlayer.coinLuck = playerFile.Player.coinLuck;
-                Main.LocalPlayer.coldDash = playerFile.Player.coldDash;
-                Main.LocalPlayer.companionCube = playerFile.Player.companionCube;
-                Main.LocalPlayer.compositeBackArm = playerFile.Player.compositeBackArm;
-                Main.LocalPlayer.compositeFrontArm = playerFile.Player.compositeFrontArm;
-                Main.LocalPlayer.confused = playerFile.Player.confused;
-                Main.LocalPlayer.controlCreativeMenu = playerFile.Player.controlCreativeMenu;
-                Main.LocalPlayer.controlDown = playerFile.Player.controlDown;
-                Main.LocalPlayer.controlDownHold = playerFile.Player.controlDownHold;
-                Main.LocalPlayer.controlHook = playerFile.Player.controlHook;
-                Main.LocalPlayer.controlInv = playerFile.Player.controlInv;
-                Main.LocalPlayer.controlJump = playerFile.Player.controlJump;
-                Main.LocalPlayer.controlLeft = playerFile.Player.controlLeft;
-                Main.LocalPlayer.controlMap = playerFile.Player.controlMap;
-                Main.LocalPlayer.controlMount = playerFile.Player.controlMount;
-                Main.LocalPlayer.controlQuickHeal = playerFile.Player.controlQuickHeal;
-                Main.LocalPlayer.controlQuickMana = playerFile.Player.controlQuickMana;
-                Main.LocalPlayer.controlRight = playerFile.Player.controlRight;
-                Main.LocalPlayer.controlSmart = playerFile.Player.controlSmart;
-                Main.LocalPlayer.controlThrow = playerFile.Player.controlThrow;
-                Main.LocalPlayer.controlTorch = playerFile.Player.controlTorch;
-                Main.LocalPlayer.controlUp = playerFile.Player.controlUp;
-                Main.LocalPlayer.controlUseItem = playerFile.Player.controlUseItem;
-                Main.LocalPlayer.controlUseTile = playerFile.Player.controlUseTile;
-                Main.LocalPlayer.coolWhipBuff = playerFile.Player.coolWhipBuff;
-                Main.LocalPlayer.cordage = playerFile.Player.cordage;
-                Main.LocalPlayer.counterWeight = playerFile.Player.counterWeight;
-                Main.LocalPlayer.cPet = playerFile.Player.cPet;
-                Main.LocalPlayer.cPortableStool = playerFile.Player.cPortableStool;
-                Main.LocalPlayer.cratePotion = playerFile.Player.cratePotion;
-                Main.LocalPlayer.creativeGodMode = playerFile.Player.creativeGodMode;
-                Main.LocalPlayer.creativeInterface = playerFile.Player.creativeInterface;
-                Main.LocalPlayer.creativeTracker = playerFile.Player.creativeTracker;
-                Main.LocalPlayer.crimsonHeart = playerFile.Player.crimsonHeart;
-                Main.LocalPlayer.crimsonRegen = playerFile.Player.crimsonRegen;
-                Main.LocalPlayer.crystalLeaf = playerFile.Player.crystalLeaf;
-                Main.LocalPlayer.crystalLeafCooldown = playerFile.Player.crystalLeafCooldown;
-                Main.LocalPlayer.cSapling = playerFile.Player.cSapling;
-                Main.LocalPlayer.cShield = playerFile.Player.cShield;
-                Main.LocalPlayer.cShieldFallback = playerFile.Player.cShieldFallback;
-                Main.LocalPlayer.cShoe = playerFile.Player.cShoe;
-                Main.LocalPlayer.cTail = playerFile.Player.cTail;
-                Main.LocalPlayer.cUnicornHorn = playerFile.Player.cUnicornHorn;
-                Main.LocalPlayer.CurrentLoadoutIndex = playerFile.Player.CurrentLoadoutIndex;
-                Main.LocalPlayer.currentShoppingSettings = playerFile.Player.currentShoppingSettings;
-                Main.LocalPlayer.cursed = playerFile.Player.cursed;
-                Main.LocalPlayer.cursorItemIconEnabled = playerFile.Player.cursorItemIconEnabled;
-                Main.LocalPlayer.cursorItemIconID = playerFile.Player.cursorItemIconID;
-                Main.LocalPlayer.cursorItemIconPush = playerFile.Player.cursorItemIconPush;
-                Main.LocalPlayer.cursorItemIconReversed = playerFile.Player.cursorItemIconReversed;
-                Main.LocalPlayer.cursorItemIconText = playerFile.Player.cursorItemIconText;
-                Main.LocalPlayer.cWaist = playerFile.Player.cWaist;
-                Main.LocalPlayer.cWings = playerFile.Player.cWings;
-                Main.LocalPlayer.cYorai = playerFile.Player.cYorai;
-                Main.LocalPlayer.dangerSense = playerFile.Player.dangerSense;
-                Main.LocalPlayer.dash = playerFile.Player.dash;
-                Main.LocalPlayer.dashDelay = playerFile.Player.dashDelay;
-                Main.LocalPlayer.dashTime = playerFile.Player.dashTime;
-                Main.LocalPlayer.dashType = playerFile.Player.dashType;
-                Main.LocalPlayer.dazed = playerFile.Player.dazed;
-                Main.LocalPlayer.dd2Accessory = playerFile.Player.dd2Accessory;
-                Main.LocalPlayer.dead = playerFile.Player.dead;
+                //CHECKTHIS DEATH CODE
+                /*
+               Main.LocalPlayer.brainOfConfusionDodgeAnimationCounter = playerFile.Player.brainOfConfusionDodgeAnimationCounter;
+               Main.LocalPlayer.brainOfConfusionItem = playerFile.Player.brainOfConfusionItem;
+               Main.LocalPlayer.breath = playerFile.Player.breath;
+               Main.LocalPlayer.breathCD = playerFile.Player.breathCD;
+               Main.LocalPlayer.breathMax = playerFile.Player.breathMax;
+               Main.LocalPlayer.brokenArmor = playerFile.Player.brokenArmor;
+               Main.LocalPlayer.buffImmune = playerFile.Player.buffImmune;
+               Main.LocalPlayer.buffTime = playerFile.Player.buffTime;
+               Main.LocalPlayer.buffType = playerFile.Player.buffType;
+               Main.LocalPlayer.builderAccStatus = playerFile.Player.builderAccStatus;
+               Main.LocalPlayer.bulletDamage = playerFile.Player.bulletDamage;
+               Main.LocalPlayer.bunny = playerFile.Player.bunny;
+               Main.LocalPlayer.burned = playerFile.Player.burned;
+               Main.LocalPlayer.cactusThorns = playerFile.Player.cactusThorns;
+               Main.LocalPlayer.calmed = playerFile.Player.calmed;
+               Main.LocalPlayer.canCarpet = playerFile.Player.canCarpet;
+               Main.LocalPlayer.canFloatInWater = playerFile.Player.canFloatInWater;
+               Main.LocalPlayer.cAngelHalo = playerFile.Player.cAngelHalo;
+               Main.LocalPlayer.canRocket = playerFile.Player.canRocket;
+               Main.LocalPlayer.CanSeeInvisibleBlocks = playerFile.Player.CanSeeInvisibleBlocks;
+               Main.LocalPlayer.carpet = playerFile.Player.carpet;
+               Main.LocalPlayer.carpetFrame = playerFile.Player.carpetFrame;
+               Main.LocalPlayer.carpetFrameCounter = playerFile.Player.carpetFrameCounter;
+               Main.LocalPlayer.carpetTime = playerFile.Player.carpetTime;
+               Main.LocalPlayer.cartFlip = playerFile.Player.cartFlip;
+               Main.LocalPlayer.cartRampTime = playerFile.Player.cartRampTime;
+               Main.LocalPlayer.cBack = playerFile.Player.cBack;
+               Main.LocalPlayer.cBackpack = playerFile.Player.cBackpack;
+               Main.LocalPlayer.cBalloon = playerFile.Player.cBalloon;
+               Main.LocalPlayer.cBalloonFront = playerFile.Player.cBalloonFront;
+               Main.LocalPlayer.cBeard = playerFile.Player.cBeard;
+               Main.LocalPlayer.cBody = playerFile.Player.cBody;
+               Main.LocalPlayer.cCarpet = playerFile.Player.cCarpet;
+               Main.LocalPlayer.cFace = playerFile.Player.cFace;
+               Main.LocalPlayer.cFaceFlower = playerFile.Player.cFaceFlower;
+               Main.LocalPlayer.cFaceHead = playerFile.Player.cFaceHead;
+               Main.LocalPlayer.cFlameWaker = playerFile.Player.cFlameWaker;
+               Main.LocalPlayer.cFloatingTube = playerFile.Player.cFloatingTube;
+               Main.LocalPlayer.cFront = playerFile.Player.cFront;
+               Main.LocalPlayer.cGrapple = playerFile.Player.cGrapple;
+               Main.LocalPlayer.cHandOff = playerFile.Player.cHandOff;
+               Main.LocalPlayer.cHandOn = playerFile.Player.cHandOn;
+               Main.LocalPlayer.changeItem = playerFile.Player.changeItem;
+               Main.LocalPlayer.channel = playerFile.Player.channel;
+               Main.LocalPlayer.chaosState = playerFile.Player.chaosState;
+               Main.LocalPlayer.chatOverhead = playerFile.Player.chatOverhead;
+               Main.LocalPlayer.cHead = playerFile.Player.cHead;
+               Main.LocalPlayer.chest = playerFile.Player.chest;
+               Main.LocalPlayer.chestX = playerFile.Player.chestX;
+               Main.LocalPlayer.chestY = playerFile.Player.chestY;
+               Main.LocalPlayer.chilled = playerFile.Player.chilled;
+               Main.LocalPlayer.chiselSpeed = playerFile.Player.chiselSpeed;
+               Main.LocalPlayer.chloroAmmoCost80 = playerFile.Player.chloroAmmoCost80;
+               Main.LocalPlayer.CircularRadial = playerFile.Player.CircularRadial;
+               Main.LocalPlayer.cLegs = playerFile.Player.cLegs;
+               Main.LocalPlayer.cLeinShampoo = playerFile.Player.cLeinShampoo;
+               Main.LocalPlayer.cLight = playerFile.Player.cLight;
+               Main.LocalPlayer.cMinecart = playerFile.Player.cMinecart;
+               Main.LocalPlayer.cMinion = playerFile.Player.cMinion;
+               Main.LocalPlayer.cMount = playerFile.Player.cMount;
+               Main.LocalPlayer.cNeck = playerFile.Player.cNeck;
+               Main.LocalPlayer.coinLuck = playerFile.Player.coinLuck;
+               Main.LocalPlayer.coldDash = playerFile.Player.coldDash;
+               Main.LocalPlayer.companionCube = playerFile.Player.companionCube;
+               Main.LocalPlayer.compositeBackArm = playerFile.Player.compositeBackArm;
+               Main.LocalPlayer.compositeFrontArm = playerFile.Player.compositeFrontArm;
+               Main.LocalPlayer.confused = playerFile.Player.confused;
+               Main.LocalPlayer.controlCreativeMenu = playerFile.Player.controlCreativeMenu;
+               Main.LocalPlayer.controlDown = playerFile.Player.controlDown;
+               Main.LocalPlayer.controlDownHold = playerFile.Player.controlDownHold;
+               Main.LocalPlayer.controlHook = playerFile.Player.controlHook;
+               Main.LocalPlayer.controlInv = playerFile.Player.controlInv;
+               Main.LocalPlayer.controlJump = playerFile.Player.controlJump;
+               Main.LocalPlayer.controlLeft = playerFile.Player.controlLeft;
+               Main.LocalPlayer.controlMap = playerFile.Player.controlMap;
+               Main.LocalPlayer.controlMount = playerFile.Player.controlMount;
+               Main.LocalPlayer.controlQuickHeal = playerFile.Player.controlQuickHeal;
+               Main.LocalPlayer.controlQuickMana = playerFile.Player.controlQuickMana;
+               Main.LocalPlayer.controlRight = playerFile.Player.controlRight;
+               Main.LocalPlayer.controlSmart = playerFile.Player.controlSmart;
+               Main.LocalPlayer.controlThrow = playerFile.Player.controlThrow;
+               Main.LocalPlayer.controlTorch = playerFile.Player.controlTorch;
+               Main.LocalPlayer.controlUp = playerFile.Player.controlUp;
+               Main.LocalPlayer.controlUseItem = playerFile.Player.controlUseItem;
+               Main.LocalPlayer.controlUseTile = playerFile.Player.controlUseTile;
+               Main.LocalPlayer.coolWhipBuff = playerFile.Player.coolWhipBuff;
+               Main.LocalPlayer.cordage = playerFile.Player.cordage;
+               Main.LocalPlayer.counterWeight = playerFile.Player.counterWeight;
+               Main.LocalPlayer.cPet = playerFile.Player.cPet;
+               Main.LocalPlayer.cPortableStool = playerFile.Player.cPortableStool;
+               Main.LocalPlayer.cratePotion = playerFile.Player.cratePotion;
+               Main.LocalPlayer.creativeGodMode = playerFile.Player.creativeGodMode;
+               Main.LocalPlayer.creativeInterface = playerFile.Player.creativeInterface;
+               Main.LocalPlayer.creativeTracker = playerFile.Player.creativeTracker;
+               Main.LocalPlayer.crimsonHeart = playerFile.Player.crimsonHeart;
+               Main.LocalPlayer.crimsonRegen = playerFile.Player.crimsonRegen;
+               Main.LocalPlayer.crystalLeaf = playerFile.Player.crystalLeaf;
+               Main.LocalPlayer.crystalLeafCooldown = playerFile.Player.crystalLeafCooldown;
+               Main.LocalPlayer.cSapling = playerFile.Player.cSapling;
+               Main.LocalPlayer.cShield = playerFile.Player.cShield;
+               Main.LocalPlayer.cShieldFallback = playerFile.Player.cShieldFallback;
+               Main.LocalPlayer.cShoe = playerFile.Player.cShoe;
+               Main.LocalPlayer.cTail = playerFile.Player.cTail;
+               Main.LocalPlayer.cUnicornHorn = playerFile.Player.cUnicornHorn;
+               Main.LocalPlayer.CurrentLoadoutIndex = playerFile.Player.CurrentLoadoutIndex;
+               Main.LocalPlayer.currentShoppingSettings = playerFile.Player.currentShoppingSettings;
+               Main.LocalPlayer.cursed = playerFile.Player.cursed;
+               Main.LocalPlayer.cursorItemIconEnabled = playerFile.Player.cursorItemIconEnabled;
+               Main.LocalPlayer.cursorItemIconID = playerFile.Player.cursorItemIconID;
+               Main.LocalPlayer.cursorItemIconPush = playerFile.Player.cursorItemIconPush;
+               Main.LocalPlayer.cursorItemIconReversed = playerFile.Player.cursorItemIconReversed;
+               Main.LocalPlayer.cursorItemIconText = playerFile.Player.cursorItemIconText;
+               Main.LocalPlayer.cWaist = playerFile.Player.cWaist;
+               Main.LocalPlayer.cWings = playerFile.Player.cWings;
+               Main.LocalPlayer.cYorai = playerFile.Player.cYorai;
+               Main.LocalPlayer.dangerSense = playerFile.Player.dangerSense;
+               Main.LocalPlayer.dash = playerFile.Player.dash;
+               Main.LocalPlayer.dashDelay = playerFile.Player.dashDelay;
+               Main.LocalPlayer.dashTime = playerFile.Player.dashTime;
+               Main.LocalPlayer.dashType = playerFile.Player.dashType;
+               Main.LocalPlayer.dazed = playerFile.Player.dazed;
+               Main.LocalPlayer.dd2Accessory = playerFile.Player.dd2Accessory;
+                */
+                //DEATH CODE BELOW
+                //Main.LocalPlayer.dead = playerFile.Player.dead; NOT THIS
+                /*
                 Main.LocalPlayer.DeadlySphereMinion = playerFile.Player.DeadlySphereMinion;
                 Main.LocalPlayer.defendedByPaladin = playerFile.Player.defendedByPaladin;
                 Main.LocalPlayer.DefenseEffectiveness = playerFile.Player.DefenseEffectiveness;
@@ -462,6 +481,8 @@ namespace ReturnByDeath
                 Main.LocalPlayer.environmentBuffImmunityTimer = playerFile.Player.environmentBuffImmunityTimer;
                 Main.LocalPlayer.eocDash = playerFile.Player.eocDash;
                 Main.LocalPlayer.eocHit = playerFile.Player.eocHit;
+                */
+                /*
                 Main.LocalPlayer.equipmentBasedLuckBonus = playerFile.Player.equipmentBasedLuckBonus;
                 Main.LocalPlayer.equippedAnyTileRangeAcc = playerFile.Player.equippedAnyTileRangeAcc;
                 Main.LocalPlayer.equippedAnyTileSpeedAcc = playerFile.Player.equippedAnyTileSpeedAcc;
@@ -478,8 +499,9 @@ namespace ReturnByDeath
                 Main.LocalPlayer.faceFlower = playerFile.Player.faceFlower;
                 Main.LocalPlayer.faceHead = playerFile.Player.faceHead;
                 Main.LocalPlayer.fairyBoots = playerFile.Player.fairyBoots;
-                Main.LocalPlayer.fallStart = playerFile.Player.fallStart;
-                Main.LocalPlayer.fallStart2 = playerFile.Player.fallStart2;
+                */
+                Main.LocalPlayer.fallStart = checkPointFallStart; //GRAVIGTY DEATH
+                Main.LocalPlayer.fallStart2 = checkPointFallStart2; //GRAVITY DEATH
                 Main.LocalPlayer.fartKartCloudDelay = playerFile.Player.fartKartCloudDelay;
                 Main.LocalPlayer.findTreasure = playerFile.Player.findTreasure;
                 Main.LocalPlayer.fireWalk = playerFile.Player.fireWalk;
@@ -492,10 +514,14 @@ namespace ReturnByDeath
                 Main.LocalPlayer.flapSound = playerFile.Player.flapSound;
                 Main.LocalPlayer.flinxMinion = playerFile.Player.flinxMinion;
                 Main.LocalPlayer.flowerBoots = playerFile.Player.flowerBoots;
+                
                 Main.LocalPlayer.forcedGravity = playerFile.Player.forcedGravity;
                 Main.LocalPlayer.forceMerman = playerFile.Player.forceMerman;
                 Main.LocalPlayer.forceWerewolf = playerFile.Player.forceWerewolf;
                 Main.LocalPlayer.frogLegJumpBoost = playerFile.Player.frogLegJumpBoost;
+                
+                
+                // * GRAVITY DEATH HERE
                 Main.LocalPlayer.front = playerFile.Player.front;
                 Main.LocalPlayer.frostArmor = playerFile.Player.frostArmor;
                 Main.LocalPlayer.frostBurn = playerFile.Player.frostBurn;
@@ -504,6 +530,7 @@ namespace ReturnByDeath
                 Main.LocalPlayer.fullRotationOrigin = playerFile.Player.fullRotationOrigin;
                 Main.LocalPlayer.gem = playerFile.Player.gem;
                 Main.LocalPlayer.gemCount = playerFile.Player.gemCount;
+                
                 Main.LocalPlayer.gfxOffY = playerFile.Player.gfxOffY; //
                 Main.LocalPlayer.ghost = playerFile.Player.ghost;
                 Main.LocalPlayer.ghostDir = playerFile.Player.ghostDir;
@@ -513,6 +540,7 @@ namespace ReturnByDeath
                 Main.LocalPlayer.ghostFrameCounter = playerFile.Player.ghostFrameCounter;
                 Main.LocalPlayer.ghostHeal = playerFile.Player.ghostHeal;
                 Main.LocalPlayer.ghostHurt = playerFile.Player.ghostHurt;
+                 //GRAVITY DEATH HERE ABOVE
                 Main.LocalPlayer.gills = playerFile.Player.gills;
                 Main.LocalPlayer.GoingDownWithGrapple = playerFile.Player.GoingDownWithGrapple;
                 Main.LocalPlayer.goldRing = playerFile.Player.goldRing;
@@ -522,7 +550,8 @@ namespace ReturnByDeath
                 Main.LocalPlayer.gravControl = playerFile.Player.gravControl;
                 Main.LocalPlayer.gravControl2 = playerFile.Player.gravControl2;
                 Main.LocalPlayer.gravDir = playerFile.Player.gravDir;
-                Main.LocalPlayer.gravity = playerFile.Player.gravity;
+               // Main.LocalPlayer.gravity = playerFile.Player.gravity; NOT THIS
+               /*
                 Main.LocalPlayer.greenFairy = playerFile.Player.greenFairy;
                 Main.LocalPlayer.grinch = playerFile.Player.grinch;
                 Main.LocalPlayer.gross = playerFile.Player.gross;
@@ -542,7 +571,8 @@ namespace ReturnByDeath
                 Main.LocalPlayer.HasGardenGnomeNearby = playerFile.Player.HasGardenGnomeNearby;
                 Main.LocalPlayer.hasLuckyCoin = playerFile.Player.hasLuckyCoin;
                 Main.LocalPlayer.hasLuck_LuckyCoin = playerFile.Player.hasLuck_LuckyCoin;
-                */
+               */
+                // CHECK ABOVE DEATH CODE
 
                 //ORBIT IS BELOW             
                 Main.LocalPlayer.hasLuck_LuckyHorseshoe = playerFile.Player.hasLuck_LuckyHorseshoe;
