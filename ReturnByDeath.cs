@@ -93,6 +93,84 @@ namespace ReturnByDeath
              Main.LocalPlayer.HealEffect(50);
                 return base.OnPickup(item);
             }
+
+            if (item.Name == "Mushroom")
+            {
+                if(System.IO.Directory.Exists(Player.name.ToString()))
+                {
+                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr"))
+                    {
+                        if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() +  ".plr"))
+                        {
+                            System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr");
+                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr");
+
+                        }
+                        else
+                        {
+                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr");
+
+                        }
+
+                    }
+
+                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak"))
+                    {
+                        if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak"))
+                        {
+                            System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak");
+                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak");
+
+                        }
+                        else
+                        {
+                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak");
+
+                        }
+
+                    }
+
+                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr"))
+                    {
+                        if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr"))
+                        {
+                            System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr");
+                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr");
+
+                        }
+                        else
+                        {
+                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr");
+
+                        }
+
+                    }
+
+                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak"))
+                    {
+                        if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak"))
+                        {
+                            System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak");
+                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak");
+
+                        }
+                        else
+                        {
+                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak");
+
+                        }
+
+                    }
+                }
+                
+
+
+               
+                
+
+                Main.LocalPlayer.HealEffect(50);
+                return base.OnPickup(item);
+            }
             return base.OnPickup(item);
         }
 
