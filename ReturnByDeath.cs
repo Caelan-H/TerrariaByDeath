@@ -101,12 +101,22 @@ namespace ReturnByDeath
                     }
 
                     Main.LocalPlayer.HealEffect(50);
-                    checkPointPosition = Main.LocalPlayer.position;
-                    checkPointBodyPosition = Main.LocalPlayer.bodyPosition;
-                    checkPointBodyRotation = Main.LocalPlayer.bodyRotation;
-                    checkPointBodyVelocity = Main.LocalPlayer.bodyVelocity;
-                    checkPointFallStart = Main.LocalPlayer.fallStart;
-                    checkPointFallStart2 = Main.LocalPlayer.fallStart2;
+                    /* IMPORTANT SWAP SECTION FOR POSITION*/
+                    //checkPointPosition = Main.LocalPlayer.position;
+                    //checkPointBodyPosition.
+                    //checkPointBodyPosition = Main.LocalPlayer.bodyPosition;
+                    //checkPointBodyRotation = Main.LocalPlayer.bodyRotation;
+                    //checkPointBodyVelocity = Main.LocalPlayer.bodyVelocity;
+                    //checkPointFallStart = Main.LocalPlayer.fallStart;
+                    //checkPointFallStart2 = Main.LocalPlayer.fallStart2;
+
+                    
+                    System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", Main.LocalPlayer.position.X.ToString() + "\n" + Main.LocalPlayer.position.Y.ToString() + "\n" + Main.LocalPlayer.fallStart.ToString() + "\n" + Main.LocalPlayer.fallStart2.ToString() + "");
+                    /*System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "X", Main.LocalPlayer.position.X.ToString());
+                    System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "Y", Main.LocalPlayer.position.Y.ToString());
+                    System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "FallStart", Main.LocalPlayer.fallStart.ToString());
+                    System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "FallStart2", Main.LocalPlayer.fallStart2.ToString());
+                   */
                     return base.OnPickup(item);
                 }
                 else
@@ -193,10 +203,12 @@ namespace ReturnByDeath
                 //Player.LoadPlayer("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr",false);
                 // PreKill() 
                 PlayerFileData playerFile = Player.GetFileData("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr", false);
-                
+                StreamReader a = File.OpenText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData");
+
                 Main.LocalPlayer.inventory = playerFile.Player.inventory;
-                //CODE THAT PREVENTS MOVEMENT AFTER PICKUP INSIDE
                 
+                //CODE THAT PREVENTS MOVEMENT AFTER PICKUP INSIDE
+
                 Main.LocalPlayer.abigailMinion = playerFile.Player.abigailMinion;
                 Main.LocalPlayer.accCalendar = playerFile.Player.accCalendar;
                 Main.LocalPlayer.accCompass = playerFile.Player.accCompass;
@@ -301,9 +313,9 @@ namespace ReturnByDeath
                 Main.LocalPlayer.bodyFrame = playerFile.Player.bodyFrame;
                 Main.LocalPlayer.bodyFrameCounter = playerFile.Player.bodyFrameCounter;
                 // FIXED ORBIT ISSUE, what about pause?
-                Main.LocalPlayer.bodyPosition = checkPointBodyPosition;
-                Main.LocalPlayer.bodyRotation = checkPointBodyRotation;
-                Main.LocalPlayer.bodyVelocity = checkPointBodyVelocity;
+                //Main.LocalPlayer.bodyPosition = checkPointBodyPosition;
+               // Main.LocalPlayer.bodyRotation = checkPointBodyRotation; //REMEMBER
+                //Main.LocalPlayer.bodyVelocity = checkPointBodyVelocity;
                 //
                 Main.LocalPlayer.boneArmor = playerFile.Player.boneArmor;
                 Main.LocalPlayer.boneGloveItem = playerFile.Player.boneGloveItem;
@@ -500,8 +512,7 @@ namespace ReturnByDeath
                 Main.LocalPlayer.faceHead = playerFile.Player.faceHead;
                 Main.LocalPlayer.fairyBoots = playerFile.Player.fairyBoots;
                 */
-                Main.LocalPlayer.fallStart = checkPointFallStart; //GRAVIGTY DEATH
-                Main.LocalPlayer.fallStart2 = checkPointFallStart2; //GRAVITY DEATH
+                
                 Main.LocalPlayer.fartKartCloudDelay = playerFile.Player.fartKartCloudDelay;
                 Main.LocalPlayer.findTreasure = playerFile.Player.findTreasure;
                 Main.LocalPlayer.fireWalk = playerFile.Player.fireWalk;
@@ -881,7 +892,8 @@ namespace ReturnByDeath
                  Main.LocalPlayer.portableStoolInfo = playerFile.Player.portableStoolInfo;
                  Main.LocalPlayer.portalPhysicsFlag = playerFile.Player.portalPhysicsFlag;
                 //TROUBLE HERE
-                Main.LocalPlayer.position = checkPointPosition;
+                
+                
                 //TROUBLE HERE
                  Main.LocalPlayer.potionDelay = playerFile.Player.potionDelay;
                  Main.LocalPlayer.potionDelayTime = playerFile.Player.potionDelayTime;
@@ -1003,187 +1015,191 @@ namespace ReturnByDeath
                  Main.LocalPlayer.slippy = playerFile.Player.slippy;
                  Main.LocalPlayer.slippy2 = playerFile.Player.slippy2;
                  Main.LocalPlayer.sloping = playerFile.Player.sloping;
-                 /*//
+                /*//
 
-                //Whatever Sent me in orbit is above
-                /*
-                Main.LocalPlayer.slotsMinions = playerFile.Player.slotsMinions;
-                Main.LocalPlayer.slow = playerFile.Player.slow;
-                Main.LocalPlayer.slowFall = playerFile.Player.slowFall;
-                Main.LocalPlayer.slowOgreSpit = playerFile.Player.slowOgreSpit;
-                Main.LocalPlayer.smolstar = playerFile.Player.smolstar;
-                Main.LocalPlayer.snowBallLauncherInteractionCooldown = playerFile.Player.snowBallLauncherInteractionCooldown;
-                Main.LocalPlayer.snowman = playerFile.Player.snowman;
-                Main.LocalPlayer.socialGhost = playerFile.Player.socialGhost;
-                Main.LocalPlayer.socialIgnoreLight = playerFile.Player.socialIgnoreLight;
-                Main.LocalPlayer.socialShadowRocketBoots = playerFile.Player.socialShadowRocketBoots;
-                Main.LocalPlayer.solarCounter = playerFile.Player.solarCounter;
-                Main.LocalPlayer.solarDashConsumedFlare = playerFile.Player.solarDashConsumedFlare;
-                Main.LocalPlayer.solarDashing = playerFile.Player.solarDashing;
-                Main.LocalPlayer.solarMonolithShader = playerFile.Player.solarMonolithShader;
-                Main.LocalPlayer.solarShieldPos = playerFile.Player.solarShieldPos;
-                Main.LocalPlayer.solarShields = playerFile.Player.solarShields;
-                Main.LocalPlayer.solarShieldVel = playerFile.Player.solarShieldVel;
-                Main.LocalPlayer.sonarPotion = playerFile.Player.sonarPotion;
-                Main.LocalPlayer.soulDrain = playerFile.Player.soulDrain;
-                Main.LocalPlayer.spaceGun = playerFile.Player.spaceGun;
-                Main.LocalPlayer.spawnMax = playerFile.Player.spawnMax;
-                Main.LocalPlayer.SpawnX = playerFile.Player.SpawnX;
-                Main.LocalPlayer.SpawnY = playerFile.Player.SpawnY;
-                Main.LocalPlayer.specialistDamage = playerFile.Player.specialistDamage;
-                Main.LocalPlayer.speedSlice = playerFile.Player.speedSlice;
-                Main.LocalPlayer.spelunkerTimer = playerFile.Player.spelunkerTimer;
-                Main.LocalPlayer.spI = playerFile.Player.spI;
-                Main.LocalPlayer.spider = playerFile.Player.spider;
-                Main.LocalPlayer.spiderArmor = playerFile.Player.spiderArmor;
-                Main.LocalPlayer.spiderMinion = playerFile.Player.spiderMinion;
-                Main.LocalPlayer.spikedBoots = playerFile.Player.spikedBoots;
-                Main.LocalPlayer.spN = playerFile.Player.spN;
-                Main.LocalPlayer.sporeSac = playerFile.Player.sporeSac;
-                Main.LocalPlayer.spX = playerFile.Player.spX;
-                Main.LocalPlayer.spY = playerFile.Player.spY;
-                Main.LocalPlayer.squashling = playerFile.Player.squashling;
-                Main.LocalPlayer.stairFall = playerFile.Player.stairFall;
-                Main.LocalPlayer.starCloakCooldown = playerFile.Player.starCloakCooldown;
-                Main.LocalPlayer.starCloakItem = playerFile.Player.starCloakItem;
-                Main.LocalPlayer.starCloakItem_beeCloakOverrideItem = playerFile.Player.starCloakItem_beeCloakOverrideItem;
-                Main.LocalPlayer.starCloakItem_manaCloakOverrideItem = playerFile.Player.starCloakItem_manaCloakOverrideItem;
-                Main.LocalPlayer.starCloakItem_starVeilOverrideItem = playerFile.Player.starCloakItem_starVeilOverrideItem;
-                Main.LocalPlayer.stardustDragon = playerFile.Player.stardustDragon;
-                Main.LocalPlayer.stardustGuardian = playerFile.Player.stardustGuardian;
-                Main.LocalPlayer.stardustMinion = playerFile.Player.stardustMinion;
-                Main.LocalPlayer.stardustMonolithShader = playerFile.Player.stardustMonolithShader;
-                Main.LocalPlayer.starving = playerFile.Player.starving;
-                Main.LocalPlayer.statDefense = playerFile.Player.statDefense;
-                Main.LocalPlayer.statLife = playerFile.Player.statLife;
-                Main.LocalPlayer.statLifeMax = playerFile.Player.statLifeMax;
-                Main.LocalPlayer.statLifeMax2 = playerFile.Player.statLifeMax2;
-                Main.LocalPlayer.statMana = playerFile.Player.statMana;
-                Main.LocalPlayer.statManaMax = playerFile.Player.statManaMax;
-                Main.LocalPlayer.statManaMax2 = playerFile.Player.statManaMax2;
-                Main.LocalPlayer.stealth = playerFile.Player.stealth;
-                Main.LocalPlayer.stealthTimer = playerFile.Player.stealthTimer;
-                Main.LocalPlayer.step = playerFile.Player.step;
-                Main.LocalPlayer.stepSpeed = playerFile.Player.stepSpeed;
-                Main.LocalPlayer.sticky = playerFile.Player.sticky;
-                Main.LocalPlayer.stickyBreak = playerFile.Player.stickyBreak;
-                Main.LocalPlayer.stinky = playerFile.Player.stinky;
-                Main.LocalPlayer.stoned = playerFile.Player.stoned;
-                Main.LocalPlayer.stormTiger = playerFile.Player.stormTiger;
-                Main.LocalPlayer.stringColor = playerFile.Player.stringColor;
-                Main.LocalPlayer.strongBees = playerFile.Player.strongBees;
-                Main.LocalPlayer.suffocateDelay = playerFile.Player.suffocateDelay;
-                Main.LocalPlayer.suffocating = playerFile.Player.suffocating;
-                Main.LocalPlayer.sunflower = playerFile.Player.sunflower;
-                Main.LocalPlayer.suspiciouslookingTentacle = playerFile.Player.suspiciouslookingTentacle;
-                Main.LocalPlayer.swimTime = playerFile.Player.swimTime;
-                Main.LocalPlayer.tail = playerFile.Player.tail;
-                Main.LocalPlayer.tankPet = playerFile.Player.tankPet;
-                Main.LocalPlayer.tankPetReset = playerFile.Player.tankPetReset;
-                Main.LocalPlayer.taxMoney = playerFile.Player.taxMoney;
-                Main.LocalPlayer.taxTimer = playerFile.Player.taxTimer;
-                Main.LocalPlayer.team = playerFile.Player.team;
-                Main.LocalPlayer.teleporting = playerFile.Player.teleporting;
-                Main.LocalPlayer.teleportStyle = playerFile.Player.teleportStyle;
-                Main.LocalPlayer.teleportTime = playerFile.Player.teleportTime;
-                Main.LocalPlayer.thorns = playerFile.Player.thorns;
-                Main.LocalPlayer.tiki = playerFile.Player.tiki;
-                Main.LocalPlayer.tileEntityAnchor = playerFile.Player.tileEntityAnchor;
-                Main.LocalPlayer.tileInteractAttempted = playerFile.Player.tileInteractAttempted;
-                Main.LocalPlayer.tileInteractionHappened = playerFile.Player.tileInteractAttempted;
-                Main.LocalPlayer.tileSpeed = playerFile.Player.tileSpeed;
-                Main.LocalPlayer.timeShimmering = playerFile.Player.timeShimmering;
-                Main.LocalPlayer.timeSinceLastDashStarted = playerFile.Player.timeSinceLastDashStarted;
-                Main.LocalPlayer.tipsy = playerFile.Player.tipsy;
-                Main.LocalPlayer.titaniumStormCooldown = playerFile.Player.titaniumStormCooldown;
-                Main.LocalPlayer.tongued = playerFile.Player.tongued;
-                Main.LocalPlayer.toolTime = playerFile.Player.toolTime;
-                Main.LocalPlayer.torchLuck = playerFile.Player.torchLuck;
-                Main.LocalPlayer.TouchedTiles = playerFile.Player.TouchedTiles;
-                Main.LocalPlayer.townNPCs = playerFile.Player.townNPCs;
-                Main.LocalPlayer.trackBoost = playerFile.Player.trackBoost;
-                Main.LocalPlayer.trapDebuffSource = playerFile.Player.trapDebuffSource;
-                Main.LocalPlayer.trashItem = playerFile.Player.trashItem;
-                Main.LocalPlayer.treasureMagnet = playerFile.Player.treasureMagnet;
-                Main.LocalPlayer.trident = playerFile.Player.trident;
-                Main.LocalPlayer.truffle = playerFile.Player.truffle;
-                Main.LocalPlayer.tryKeepingHoveringDown = playerFile.Player.tryKeepingHoveringDown;
-                Main.LocalPlayer.tryKeepingHoveringUp = playerFile.Player.tryKeepingHoveringUp;
-                Main.LocalPlayer.turtle = playerFile.Player.turtle;
-                Main.LocalPlayer.turtleArmor = playerFile.Player.turtleArmor;
-                Main.LocalPlayer.turtleThorns = playerFile.Player.turtleThorns;
-                Main.LocalPlayer.twinsMinion = playerFile.Player.twinsMinion;
-                Main.LocalPlayer.UFOMinion = playerFile.Player.UFOMinion;
-                Main.LocalPlayer.underShirtColor = playerFile.Player.underShirtColor;
-                Main.LocalPlayer.unlockedBiomeTorches = playerFile.Player.unlockedBiomeTorches;
-                Main.LocalPlayer.unlockedSuperCart = playerFile.Player.unlockedSuperCart;
-                Main.LocalPlayer.usedAegisCrystal = playerFile.Player.usedAegisCrystal;
-                Main.LocalPlayer.usedAegisFruit = playerFile.Player.usedAegisFruit;
-                Main.LocalPlayer.usedAmbrosia = playerFile.Player.usedAmbrosia;
-                Main.LocalPlayer.usedArcaneCrystal = playerFile.Player.usedArcaneCrystal;
-                Main.LocalPlayer.usedGalaxyPearl = playerFile.Player.usedGalaxyPearl;
-                Main.LocalPlayer.usedGummyWorm = playerFile.Player.usedGummyWorm;
-                Main.LocalPlayer.vampireFrog = playerFile.Player.vampireFrog;
-                Main.LocalPlayer.vanityRocketBoots = playerFile.Player.vanityRocketBoots;
-                Main.LocalPlayer.velocity = playerFile.Player.velocity;
-                Main.LocalPlayer.venom = playerFile.Player.venom;
-                Main.LocalPlayer.voidLensChest = playerFile.Player.voidLensChest;
-                Main.LocalPlayer.voidVaultInfo = playerFile.Player.voidVaultInfo;
-                Main.LocalPlayer.volatileGelatin = playerFile.Player.volatileGelatin;
-                Main.LocalPlayer.volatileGelatinCounter = playerFile.Player.volatileGelatinCounter;
-                Main.LocalPlayer.vortexDebuff = playerFile.Player.vortexDebuff;
-                Main.LocalPlayer.vortexMonolithShader = playerFile.Player.vortexMonolithShader;
-                Main.LocalPlayer.vortexStealthActive = playerFile.Player.vortexStealthActive;
-                Main.LocalPlayer.waist = playerFile.Player.waist;
-                Main.LocalPlayer.wallSpeed = playerFile.Player.wallSpeed;
-                Main.LocalPlayer.waterWalk = playerFile.Player.waterWalk;
-                Main.LocalPlayer.waterWalk2 = playerFile.Player.waterWalk2;
-                Main.LocalPlayer.wearsRobe = playerFile.Player.wearsRobe;
-                Main.LocalPlayer.webbed = playerFile.Player.webbed;
-                Main.LocalPlayer.wellFed = playerFile.Player.wellFed;
-                Main.LocalPlayer.wereWolf = playerFile.Player.wereWolf;
-                Main.LocalPlayer.wet = playerFile.Player.wet;
-                Main.LocalPlayer.wetCount = playerFile.Player.wetCount;
-                Main.LocalPlayer.wetSlime = playerFile.Player.wetSlime;
-                Main.LocalPlayer.whipRangeMultiplier = playerFile.Player.whipRangeMultiplier;
-                Main.LocalPlayer.whoAmI = playerFile.Player.whoAmI;
-                Main.LocalPlayer.width = playerFile.Player.width;
-                Main.LocalPlayer.windPushed = playerFile.Player.windPushed;
-                Main.LocalPlayer.wingAccRunSpeed = playerFile.Player.wingAccRunSpeed;
-                Main.LocalPlayer.wingFrame = playerFile.Player.wingFrame;
-                Main.LocalPlayer.wingFrameCounter = playerFile.Player.wingFrameCounter;
-                Main.LocalPlayer.wingRunAccelerationMult = playerFile.Player.wingRunAccelerationMult;
-                Main.LocalPlayer.wings = playerFile.Player.wings;
-                Main.LocalPlayer.wingsLogic = playerFile.Player.wingsLogic;
-                Main.LocalPlayer.wingTime = playerFile.Player.wingTime;
-                Main.LocalPlayer.wingTimeMax = playerFile.Player.wingTimeMax;
-                Main.LocalPlayer.wireOperationsCooldown = playerFile.Player.wireOperationsCooldown;
-                Main.LocalPlayer.wisp = playerFile.Player.wisp;
-                Main.LocalPlayer.witheredArmor = playerFile.Player.witheredArmor;
-                Main.LocalPlayer.witheredWeapon = playerFile.Player.witheredWeapon;
-                Main.LocalPlayer.wolfAcc = playerFile.Player.wolfAcc;
-                Main.LocalPlayer.yoraiz0rDarkness = playerFile.Player.yoraiz0rDarkness;
-                Main.LocalPlayer.yoraiz0rEye = playerFile.Player.yoraiz0rEye;
-                Main.LocalPlayer.yoyoGlove = playerFile.Player.yoyoGlove;
-                Main.LocalPlayer.yoyoString = playerFile.Player.yoyoString;
-                Main.LocalPlayer.zephyrfish = playerFile.Player.zephyrfish;
-                Main.LocalPlayer.zone1 = playerFile.Player.zone1;
-                Main.LocalPlayer.zone2 = playerFile.Player.zone2;
-                Main.LocalPlayer.zone3 = playerFile.Player.zone3;
-                Main.LocalPlayer.zone4 = playerFile.Player.zone4;
-                Main.LocalPlayer.zone5 = playerFile.Player.zone5;
-                Main.LocalPlayer._framesLeftEligibleForDeadmansChestDeathAchievement = playerFile.Player._framesLeftEligibleForDeadmansChestDeathAchievement;
-                Main.LocalPlayer._funkytownAchievementCheckCooldown = playerFile.Player._funkytownAchievementCheckCooldown;
-                Main.LocalPlayer._portalPhysicsTime = playerFile.Player._portalPhysicsTime;
-                Main.LocalPlayer.Center = playerFile.Player.Center;
+               //Whatever Sent me in orbit is above
+               /*
+               Main.LocalPlayer.slotsMinions = playerFile.Player.slotsMinions;
+               Main.LocalPlayer.slow = playerFile.Player.slow;
+               Main.LocalPlayer.slowFall = playerFile.Player.slowFall;
+               Main.LocalPlayer.slowOgreSpit = playerFile.Player.slowOgreSpit;
+               Main.LocalPlayer.smolstar = playerFile.Player.smolstar;
+               Main.LocalPlayer.snowBallLauncherInteractionCooldown = playerFile.Player.snowBallLauncherInteractionCooldown;
+               Main.LocalPlayer.snowman = playerFile.Player.snowman;
+               Main.LocalPlayer.socialGhost = playerFile.Player.socialGhost;
+               Main.LocalPlayer.socialIgnoreLight = playerFile.Player.socialIgnoreLight;
+               Main.LocalPlayer.socialShadowRocketBoots = playerFile.Player.socialShadowRocketBoots;
+               Main.LocalPlayer.solarCounter = playerFile.Player.solarCounter;
+               Main.LocalPlayer.solarDashConsumedFlare = playerFile.Player.solarDashConsumedFlare;
+               Main.LocalPlayer.solarDashing = playerFile.Player.solarDashing;
+               Main.LocalPlayer.solarMonolithShader = playerFile.Player.solarMonolithShader;
+               Main.LocalPlayer.solarShieldPos = playerFile.Player.solarShieldPos;
+               Main.LocalPlayer.solarShields = playerFile.Player.solarShields;
+               Main.LocalPlayer.solarShieldVel = playerFile.Player.solarShieldVel;
+               Main.LocalPlayer.sonarPotion = playerFile.Player.sonarPotion;
+               Main.LocalPlayer.soulDrain = playerFile.Player.soulDrain;
+               Main.LocalPlayer.spaceGun = playerFile.Player.spaceGun;
+               Main.LocalPlayer.spawnMax = playerFile.Player.spawnMax;
+               Main.LocalPlayer.SpawnX = playerFile.Player.SpawnX;
+               Main.LocalPlayer.SpawnY = playerFile.Player.SpawnY;
+               Main.LocalPlayer.specialistDamage = playerFile.Player.specialistDamage;
+               Main.LocalPlayer.speedSlice = playerFile.Player.speedSlice;
+               Main.LocalPlayer.spelunkerTimer = playerFile.Player.spelunkerTimer;
+               Main.LocalPlayer.spI = playerFile.Player.spI;
+               Main.LocalPlayer.spider = playerFile.Player.spider;
+               Main.LocalPlayer.spiderArmor = playerFile.Player.spiderArmor;
+               Main.LocalPlayer.spiderMinion = playerFile.Player.spiderMinion;
+               Main.LocalPlayer.spikedBoots = playerFile.Player.spikedBoots;
+               Main.LocalPlayer.spN = playerFile.Player.spN;
+               Main.LocalPlayer.sporeSac = playerFile.Player.sporeSac;
+               Main.LocalPlayer.spX = playerFile.Player.spX;
+               Main.LocalPlayer.spY = playerFile.Player.spY;
+               Main.LocalPlayer.squashling = playerFile.Player.squashling;
+               Main.LocalPlayer.stairFall = playerFile.Player.stairFall;
+               Main.LocalPlayer.starCloakCooldown = playerFile.Player.starCloakCooldown;
+               Main.LocalPlayer.starCloakItem = playerFile.Player.starCloakItem;
+               Main.LocalPlayer.starCloakItem_beeCloakOverrideItem = playerFile.Player.starCloakItem_beeCloakOverrideItem;
+               Main.LocalPlayer.starCloakItem_manaCloakOverrideItem = playerFile.Player.starCloakItem_manaCloakOverrideItem;
+               Main.LocalPlayer.starCloakItem_starVeilOverrideItem = playerFile.Player.starCloakItem_starVeilOverrideItem;
+               Main.LocalPlayer.stardustDragon = playerFile.Player.stardustDragon;
+               Main.LocalPlayer.stardustGuardian = playerFile.Player.stardustGuardian;
+               Main.LocalPlayer.stardustMinion = playerFile.Player.stardustMinion;
+               Main.LocalPlayer.stardustMonolithShader = playerFile.Player.stardustMonolithShader;
+               Main.LocalPlayer.starving = playerFile.Player.starving;
+               Main.LocalPlayer.statDefense = playerFile.Player.statDefense;
+               Main.LocalPlayer.statLife = playerFile.Player.statLife;
+               Main.LocalPlayer.statLifeMax = playerFile.Player.statLifeMax;
+               Main.LocalPlayer.statLifeMax2 = playerFile.Player.statLifeMax2;
+               Main.LocalPlayer.statMana = playerFile.Player.statMana;
+               Main.LocalPlayer.statManaMax = playerFile.Player.statManaMax;
+               Main.LocalPlayer.statManaMax2 = playerFile.Player.statManaMax2;
+               Main.LocalPlayer.stealth = playerFile.Player.stealth;
+               Main.LocalPlayer.stealthTimer = playerFile.Player.stealthTimer;
+               Main.LocalPlayer.step = playerFile.Player.step;
+               Main.LocalPlayer.stepSpeed = playerFile.Player.stepSpeed;
+               Main.LocalPlayer.sticky = playerFile.Player.sticky;
+               Main.LocalPlayer.stickyBreak = playerFile.Player.stickyBreak;
+               Main.LocalPlayer.stinky = playerFile.Player.stinky;
+               Main.LocalPlayer.stoned = playerFile.Player.stoned;
+               Main.LocalPlayer.stormTiger = playerFile.Player.stormTiger;
+               Main.LocalPlayer.stringColor = playerFile.Player.stringColor;
+               Main.LocalPlayer.strongBees = playerFile.Player.strongBees;
+               Main.LocalPlayer.suffocateDelay = playerFile.Player.suffocateDelay;
+               Main.LocalPlayer.suffocating = playerFile.Player.suffocating;
+               Main.LocalPlayer.sunflower = playerFile.Player.sunflower;
+               Main.LocalPlayer.suspiciouslookingTentacle = playerFile.Player.suspiciouslookingTentacle;
+               Main.LocalPlayer.swimTime = playerFile.Player.swimTime;
+               Main.LocalPlayer.tail = playerFile.Player.tail;
+               Main.LocalPlayer.tankPet = playerFile.Player.tankPet;
+               Main.LocalPlayer.tankPetReset = playerFile.Player.tankPetReset;
+               Main.LocalPlayer.taxMoney = playerFile.Player.taxMoney;
+               Main.LocalPlayer.taxTimer = playerFile.Player.taxTimer;
+               Main.LocalPlayer.team = playerFile.Player.team;
+               Main.LocalPlayer.teleporting = playerFile.Player.teleporting;
+               Main.LocalPlayer.teleportStyle = playerFile.Player.teleportStyle;
+               Main.LocalPlayer.teleportTime = playerFile.Player.teleportTime;
+               Main.LocalPlayer.thorns = playerFile.Player.thorns;
+               Main.LocalPlayer.tiki = playerFile.Player.tiki;
+               Main.LocalPlayer.tileEntityAnchor = playerFile.Player.tileEntityAnchor;
+               Main.LocalPlayer.tileInteractAttempted = playerFile.Player.tileInteractAttempted;
+               Main.LocalPlayer.tileInteractionHappened = playerFile.Player.tileInteractAttempted;
+               Main.LocalPlayer.tileSpeed = playerFile.Player.tileSpeed;
+               Main.LocalPlayer.timeShimmering = playerFile.Player.timeShimmering;
+               Main.LocalPlayer.timeSinceLastDashStarted = playerFile.Player.timeSinceLastDashStarted;
+               Main.LocalPlayer.tipsy = playerFile.Player.tipsy;
+               Main.LocalPlayer.titaniumStormCooldown = playerFile.Player.titaniumStormCooldown;
+               Main.LocalPlayer.tongued = playerFile.Player.tongued;
+               Main.LocalPlayer.toolTime = playerFile.Player.toolTime;
+               Main.LocalPlayer.torchLuck = playerFile.Player.torchLuck;
+               Main.LocalPlayer.TouchedTiles = playerFile.Player.TouchedTiles;
+               Main.LocalPlayer.townNPCs = playerFile.Player.townNPCs;
+               Main.LocalPlayer.trackBoost = playerFile.Player.trackBoost;
+               Main.LocalPlayer.trapDebuffSource = playerFile.Player.trapDebuffSource;
+               Main.LocalPlayer.trashItem = playerFile.Player.trashItem;
+               Main.LocalPlayer.treasureMagnet = playerFile.Player.treasureMagnet;
+               Main.LocalPlayer.trident = playerFile.Player.trident;
+               Main.LocalPlayer.truffle = playerFile.Player.truffle;
+               Main.LocalPlayer.tryKeepingHoveringDown = playerFile.Player.tryKeepingHoveringDown;
+               Main.LocalPlayer.tryKeepingHoveringUp = playerFile.Player.tryKeepingHoveringUp;
+               Main.LocalPlayer.turtle = playerFile.Player.turtle;
+               Main.LocalPlayer.turtleArmor = playerFile.Player.turtleArmor;
+               Main.LocalPlayer.turtleThorns = playerFile.Player.turtleThorns;
+               Main.LocalPlayer.twinsMinion = playerFile.Player.twinsMinion;
+               Main.LocalPlayer.UFOMinion = playerFile.Player.UFOMinion;
+               Main.LocalPlayer.underShirtColor = playerFile.Player.underShirtColor;
+               Main.LocalPlayer.unlockedBiomeTorches = playerFile.Player.unlockedBiomeTorches;
+               Main.LocalPlayer.unlockedSuperCart = playerFile.Player.unlockedSuperCart;
+               Main.LocalPlayer.usedAegisCrystal = playerFile.Player.usedAegisCrystal;
+               Main.LocalPlayer.usedAegisFruit = playerFile.Player.usedAegisFruit;
+               Main.LocalPlayer.usedAmbrosia = playerFile.Player.usedAmbrosia;
+               Main.LocalPlayer.usedArcaneCrystal = playerFile.Player.usedArcaneCrystal;
+               Main.LocalPlayer.usedGalaxyPearl = playerFile.Player.usedGalaxyPearl;
+               Main.LocalPlayer.usedGummyWorm = playerFile.Player.usedGummyWorm;
+               Main.LocalPlayer.vampireFrog = playerFile.Player.vampireFrog;
+               Main.LocalPlayer.vanityRocketBoots = playerFile.Player.vanityRocketBoots;
+               Main.LocalPlayer.velocity = playerFile.Player.velocity;
+               Main.LocalPlayer.venom = playerFile.Player.venom;
+               Main.LocalPlayer.voidLensChest = playerFile.Player.voidLensChest;
+               Main.LocalPlayer.voidVaultInfo = playerFile.Player.voidVaultInfo;
+               Main.LocalPlayer.volatileGelatin = playerFile.Player.volatileGelatin;
+               Main.LocalPlayer.volatileGelatinCounter = playerFile.Player.volatileGelatinCounter;
+               Main.LocalPlayer.vortexDebuff = playerFile.Player.vortexDebuff;
+               Main.LocalPlayer.vortexMonolithShader = playerFile.Player.vortexMonolithShader;
+               Main.LocalPlayer.vortexStealthActive = playerFile.Player.vortexStealthActive;
+               Main.LocalPlayer.waist = playerFile.Player.waist;
+               Main.LocalPlayer.wallSpeed = playerFile.Player.wallSpeed;
+               Main.LocalPlayer.waterWalk = playerFile.Player.waterWalk;
+               Main.LocalPlayer.waterWalk2 = playerFile.Player.waterWalk2;
+               Main.LocalPlayer.wearsRobe = playerFile.Player.wearsRobe;
+               Main.LocalPlayer.webbed = playerFile.Player.webbed;
+               Main.LocalPlayer.wellFed = playerFile.Player.wellFed;
+               Main.LocalPlayer.wereWolf = playerFile.Player.wereWolf;
+               Main.LocalPlayer.wet = playerFile.Player.wet;
+               Main.LocalPlayer.wetCount = playerFile.Player.wetCount;
+               Main.LocalPlayer.wetSlime = playerFile.Player.wetSlime;
+               Main.LocalPlayer.whipRangeMultiplier = playerFile.Player.whipRangeMultiplier;
+               Main.LocalPlayer.whoAmI = playerFile.Player.whoAmI;
+               Main.LocalPlayer.width = playerFile.Player.width;
+               Main.LocalPlayer.windPushed = playerFile.Player.windPushed;
+               Main.LocalPlayer.wingAccRunSpeed = playerFile.Player.wingAccRunSpeed;
+               Main.LocalPlayer.wingFrame = playerFile.Player.wingFrame;
+               Main.LocalPlayer.wingFrameCounter = playerFile.Player.wingFrameCounter;
+               Main.LocalPlayer.wingRunAccelerationMult = playerFile.Player.wingRunAccelerationMult;
+               Main.LocalPlayer.wings = playerFile.Player.wings;
+               Main.LocalPlayer.wingsLogic = playerFile.Player.wingsLogic;
+               Main.LocalPlayer.wingTime = playerFile.Player.wingTime;
+               Main.LocalPlayer.wingTimeMax = playerFile.Player.wingTimeMax;
+               Main.LocalPlayer.wireOperationsCooldown = playerFile.Player.wireOperationsCooldown;
+               Main.LocalPlayer.wisp = playerFile.Player.wisp;
+               Main.LocalPlayer.witheredArmor = playerFile.Player.witheredArmor;
+               Main.LocalPlayer.witheredWeapon = playerFile.Player.witheredWeapon;
+               Main.LocalPlayer.wolfAcc = playerFile.Player.wolfAcc;
+               Main.LocalPlayer.yoraiz0rDarkness = playerFile.Player.yoraiz0rDarkness;
+               Main.LocalPlayer.yoraiz0rEye = playerFile.Player.yoraiz0rEye;
+               Main.LocalPlayer.yoyoGlove = playerFile.Player.yoyoGlove;
+               Main.LocalPlayer.yoyoString = playerFile.Player.yoyoString;
+               Main.LocalPlayer.zephyrfish = playerFile.Player.zephyrfish;
+               Main.LocalPlayer.zone1 = playerFile.Player.zone1;
+               Main.LocalPlayer.zone2 = playerFile.Player.zone2;
+               Main.LocalPlayer.zone3 = playerFile.Player.zone3;
+               Main.LocalPlayer.zone4 = playerFile.Player.zone4;
+               Main.LocalPlayer.zone5 = playerFile.Player.zone5;
+               Main.LocalPlayer._framesLeftEligibleForDeadmansChestDeathAchievement = playerFile.Player._framesLeftEligibleForDeadmansChestDeathAchievement;
+               Main.LocalPlayer._funkytownAchievementCheckCooldown = playerFile.Player._funkytownAchievementCheckCooldown;
+               Main.LocalPlayer._portalPhysicsTime = playerFile.Player._portalPhysicsTime;
+               Main.LocalPlayer.Center = playerFile.Player.Center;
 
-                */
-
-
+               */
 
 
 
 
+
+                Main.LocalPlayer.position.X = float.Parse(a.ReadLine());
+                Main.LocalPlayer.position.Y = float.Parse(a.ReadLine());
+                Main.LocalPlayer.fallStart = int.Parse(a.ReadLine()); //GRAVIGTY DEATH
+                Main.LocalPlayer.fallStart2 = int.Parse(a.ReadLine()); //GRAVITY DEATH
+                a.Close();
                 Main.LocalPlayer.HealEffect(50);
                 return base.OnPickup(item);
             }
