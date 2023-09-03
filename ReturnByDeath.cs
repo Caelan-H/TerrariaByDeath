@@ -21,6 +21,7 @@ using Terraria.UI;
 using Terraria.IO;
 using Terraria.Server;
 using Terraria.WorldBuilding;
+using System.Threading.Tasks;
 
 namespace ReturnByDeath
 {
@@ -32,160 +33,25 @@ namespace ReturnByDeath
         public static Vector2 checkPointBodyPosition;
         public static float checkPointBodyRotation;
         public static Vector2 checkPointBodyVelocity;
+        public static bool hasDied = false;
         public ReturnByDeath()
         {
            
         }
-
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (target.life <= 0)
+            {
+                CheckPoint();
+            }
+                base.OnHitNPCWithProj(proj, target, hit, damageDone);
+        }
         public override bool OnPickup(Item item)
         {
             if(item.Name == "Dirt Block")
             {
 
-                if (System.IO.Directory.Exists(Player.name.ToString()))
-                {
-                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr"))
-                    {
-                        if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr"))
-                        {
-                            System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
-                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
-                        }
-                        else
-                        {
-                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
-                        }
-
-                    }
-
-                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak"))
-                    {
-                        if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak"))
-                        {
-                            System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
-                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
-                        }
-                        else
-                        {
-                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
-                        }
-
-                    }
-
-                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr"))
-                    {
-                        if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr"))
-                        {
-                            System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
-                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
-                        }
-                        else
-                        {
-                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
-                        }
-
-                    }
-
-                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak"))
-                    {
-                        if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak"))
-                        {
-                            System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
-                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
-                        }
-                        else
-                        {
-                            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
-                        }
-
-                    }
-
-                    Main.LocalPlayer.HealEffect(50);
-                    /* IMPORTANT SWAP SECTION FOR POSITION*/
-                    //checkPointPosition = Main.LocalPlayer.position;
-                    //checkPointBodyPosition.
-                    
-                    //checkPointFallStart = Main.LocalPlayer.fallStart;
-                    //checkPointFallStart2 = Main.LocalPlayer.fallStart2;
-
-                    
-                    System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", Main.LocalPlayer.position.X.ToString() + "\n" + Main.LocalPlayer.position.Y.ToString() + "\n" + Main.LocalPlayer.fallStart.ToString() + "\n" + Main.LocalPlayer.fallStart2.ToString() + "");
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLife.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLifeMax.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLifeMax2.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statMana.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statManaMax.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statManaMax2.ToString());  
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyPosition.X.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyPosition.Y.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyRotation.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyVelocity.X.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyVelocity.Y.ToString());
-
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.aggro.ToString());    
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.blockExtraJumps.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.breath.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.breathCD.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.breathMax.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.dash.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.dashDelay.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.delayUseItem.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.desertDash.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.sailDash.ToString());                  
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.direction.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.forceMerman.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.forceWerewolf.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.immuneTime.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaCD.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaImmune.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaMax.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaTime.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.manaSick.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.manaSickReduction.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.potionDelay.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.potionDelayTime.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketBoots.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketDelay.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketDelay2.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketFrame.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketRelease.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketSoundDelay.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketTime.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketTimeMax.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.starCloakCooldown.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.suffocateDelay.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.suffocating.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.swimTime.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.velocity.X.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.velocity.Y.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingAccRunSpeed.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingFrame.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingFrameCounter.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingRunAccelerationMult.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wings.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingsLogic.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingTime.ToString());
-                    System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingTimeMax.ToString());
-
-
-
-
-
-
-
-
-
-
-
-                    //checkPointBodyPosition = Main.LocalPlayer.bodyPosition;
-                    //checkPointBodyRotation = Main.LocalPlayer.bodyRotation;
-                    //checkPointBodyVelocity = Main.LocalPlayer.bodyVelocity;
-                    return base.OnPickup(item);
-                }
-                else
-                {
-                    System.IO.Directory.CreateDirectory(Player.name.ToString());
-                }
+               
 
                
             }
@@ -209,7 +75,7 @@ namespace ReturnByDeath
                         }
 
                     }
-
+                    
                     if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak"))
                     {
                         if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak"))
@@ -257,6 +123,7 @@ namespace ReturnByDeath
                         }
 
                     }
+                    
                 }
 
 
@@ -1325,6 +1192,7 @@ namespace ReturnByDeath
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
+            hasDied = true;
             //PlayerFileData playerFile = Player.GetFileData("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\D.plr", false);
             //Player.SavePlayer(playerFile, true);
             //System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\D.plr");
@@ -1349,7 +1217,336 @@ namespace ReturnByDeath
             //Player.SavePlayer("BEans.plr", false);
             //base.Kill(damage, hitDirection, pvp, damageSource);
         }
-       
+
+        public async void CheckPoint()
+        {
+            if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr"))
+            {
+                System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr");
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr");
+
+            }
+            else
+            {
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr");
+
+            }
+
+            if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr.bak"))
+            {
+                System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr.bak");
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr.bak");
+
+            }
+            else
+            {
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr.bak");
+            }
+
+            //////
+            ///
+
+            if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr"))
+            {
+                System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr");
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr");
+
+            }
+            else
+            {
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr");
+
+            }
+
+            if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr.bak"))
+            {
+                System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr.bak");
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr.bak");
+
+            }
+            else
+            {
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr.bak");
+            }
+
+            System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", Main.LocalPlayer.position.X.ToString() + "\n" + Main.LocalPlayer.position.Y.ToString() + "\n" + Main.LocalPlayer.fallStart.ToString() + "\n" + Main.LocalPlayer.fallStart2.ToString() + "");
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.statLife.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.statLifeMax.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.statLifeMax2.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.statMana.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.statManaMax.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.statManaMax2.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.bodyPosition.X.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.bodyPosition.Y.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.bodyRotation.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.bodyVelocity.X.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.bodyVelocity.Y.ToString());
+
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.aggro.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.blockExtraJumps.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.breath.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.breathCD.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.breathMax.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.dash.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.dashDelay.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.delayUseItem.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.desertDash.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.sailDash.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.direction.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.forceMerman.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.forceWerewolf.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.immuneTime.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.lavaCD.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.lavaImmune.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.lavaMax.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.lavaTime.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.manaSick.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.manaSickReduction.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.potionDelay.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.potionDelayTime.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.rocketBoots.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.rocketDelay.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.rocketDelay2.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.rocketFrame.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.rocketRelease.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.rocketSoundDelay.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.rocketTime.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.rocketTimeMax.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.starCloakCooldown.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.suffocateDelay.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.suffocating.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.swimTime.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.velocity.X.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.velocity.Y.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.wingAccRunSpeed.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.wingFrame.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.wingFrameCounter.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.wingRunAccelerationMult.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.wings.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.wingsLogic.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.wingTime.ToString());
+            System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "\n" + Main.LocalPlayer.wingTimeMax.ToString());
+
+            /*
+            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr.bak");
+            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr");
+            System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr.bak");
+           */
+            hasDied = false;
+            await Task.Delay(15000);
+            if(hasDied == true)
+            {
+                hasDied = false;
+            }
+            else
+            {
+                System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
+                System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
+                System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
+                System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
+                 // FOR .plr
+                if(System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr"))
+                {
+                    System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
+                }
+                else
+                {
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
+                }
+                // For .plr.bak
+                if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak"))
+                {
+                    System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
+                }
+                else
+                {
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
+                }
+                //For .tplr
+                if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr"))
+                {
+                    System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
+                }
+                else
+                {
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
+                }
+                //For .tplr.bak
+                if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak"))
+                {
+                    System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
+                }
+                else
+                {
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
+                }
+                /*
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xtplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
+                */
+
+
+
+                //PlayerFileData playerFile = Player.GetFileData("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr", false);
+                //Player.SavePlayer(playerFile, true);
+                if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr"))
+                {
+                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr"))
+                    {
+                        System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
+                        System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
+                    }
+                    else
+                    {
+                        System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr");
+                    }
+
+                }
+
+                if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak"))
+                {
+                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak"))
+                    {
+                        System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
+                        System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
+                    }
+                    else
+                    {
+                        System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".plr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".plr.bak");
+                    }
+
+                }
+
+                if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr"))
+                {
+                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr"))
+                    {
+                        System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
+                        System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
+                    }
+                    else
+                    {
+                        System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr");
+                    }
+
+                }
+
+                if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak"))
+                {
+                    if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak"))
+                    {
+                        System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
+                        System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr.bak", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
+                    }
+                    else
+                    {
+                        System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + ".tplr", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".tplr.bak");
+                    }
+
+                }
+
+                Main.LocalPlayer.HealEffect(50);
+                if(System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData"))
+                {
+                    System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData");
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData");
+                }
+                else
+                {
+                    System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointDataX", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData");
+                }
+                /* IMPORTANT SWAP SECTION FOR POSITION*/
+                //checkPointPosition = Main.LocalPlayer.position;
+                //checkPointBodyPosition.
+
+                //checkPointFallStart = Main.LocalPlayer.fallStart;
+                //checkPointFallStart2 = Main.LocalPlayer.fallStart2;
+
+                /*
+                System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", Main.LocalPlayer.position.X.ToString() + "\n" + Main.LocalPlayer.position.Y.ToString() + "\n" + Main.LocalPlayer.fallStart.ToString() + "\n" + Main.LocalPlayer.fallStart2.ToString() + "");
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLife.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLifeMax.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statLifeMax2.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statMana.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statManaMax.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.statManaMax2.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyPosition.X.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyPosition.Y.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyRotation.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyVelocity.X.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.bodyVelocity.Y.ToString());
+
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.aggro.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.blockExtraJumps.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.breath.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.breathCD.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.breathMax.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.dash.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.dashDelay.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.delayUseItem.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.desertDash.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.sailDash.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.direction.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.forceMerman.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.forceWerewolf.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.immuneTime.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaCD.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaImmune.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaMax.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.lavaTime.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.manaSick.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.manaSickReduction.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.potionDelay.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.potionDelayTime.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketBoots.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketDelay.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketDelay2.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketFrame.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketRelease.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketSoundDelay.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketTime.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.rocketTimeMax.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.starCloakCooldown.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.suffocateDelay.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.suffocating.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.swimTime.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.velocity.X.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.velocity.Y.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingAccRunSpeed.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingFrame.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingFrameCounter.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingRunAccelerationMult.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wings.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingsLogic.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingTime.ToString());
+                System.IO.File.AppendAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "CheckpointData", "\n" + Main.LocalPlayer.wingTimeMax.ToString());
+                */
+
+
+
+
+
+
+
+
+
+
+                //checkPointBodyPosition = Main.LocalPlayer.bodyPosition;
+                //checkPointBodyRotation = Main.LocalPlayer.bodyRotation;
+                //checkPointBodyVelocity = Main.LocalPlayer.bodyVelocity;
+
+
+            }
+
+        }
+
+
 
     }
 }
