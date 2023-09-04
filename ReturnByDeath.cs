@@ -22,6 +22,7 @@ using Terraria.IO;
 using Terraria.Server;
 using Terraria.WorldBuilding;
 using System.Threading.Tasks;
+using Terraria.GameContent.Drawing;
 
 namespace ReturnByDeath
 {
@@ -1184,7 +1185,7 @@ namespace ReturnByDeath
 
 
                 a.Close();
-                /*
+                
                 if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld"))
                 {
                     System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld");
@@ -1203,14 +1204,40 @@ namespace ReturnByDeath
                 {
                     System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twldp", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twld");
                 }
-                */
+                
                 Main.LocalPlayer.HealEffect(50);
-                //WorldFile.LoadWorld(false);
+                WorldFile.LoadWorld(false);
+                System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "LoadCharacterPOS", "true" + "\n" + Main.LocalPlayer.position.X.ToString() + "\n" + Main.LocalPlayer.position.Y.ToString() + "\n" + Main.LocalPlayer.fallStart.ToString() + "\n" + Main.LocalPlayer.fallStart2.ToString() + "");
+                WorldGen.SaveAndQuit();
+                
+                
+                
                 return base.OnPickup(item);
             }
             return base.OnPickup(item);
         }
+        public override void OnEnterWorld()
+        {
+            base.OnEnterWorld();
+            if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "LoadCharacterPOS"))
+            {
+                StreamReader a = File.OpenText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "LoadCharacterPOS");
+                bool didDie = bool.Parse(a.ReadLine());
+                if (didDie == true)
+                {
+                    Main.LocalPlayer.position.X = float.Parse(a.ReadLine());
+                    Main.LocalPlayer.position.Y = float.Parse(a.ReadLine());
+                    Main.LocalPlayer.fallStart = int.Parse(a.ReadLine()); //GRAVIGTY DEATH
+                    Main.LocalPlayer.fallStart2 = int.Parse(a.ReadLine()); //GRAVITY DEATH
+                }
+                
+                a.Close();
+                System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "LoadCharacterPOS", "false" + "\n" + Main.LocalPlayer.position.X.ToString() + "\n" + Main.LocalPlayer.position.Y.ToString() + "\n" + Main.LocalPlayer.fallStart.ToString() + "\n" + Main.LocalPlayer.fallStart2.ToString() + "");
 
+            }
+
+
+        }
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
             hasDied = true;
