@@ -1184,7 +1184,7 @@ namespace ReturnByDeath
 
 
                 a.Close();
-
+                /*
                 if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld"))
                 {
                     System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld");
@@ -1203,8 +1203,9 @@ namespace ReturnByDeath
                 {
                     System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twldp", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twld");
                 }
+                */
                 Main.LocalPlayer.HealEffect(50);
-                WorldFile.LoadWorld(false);
+                //WorldFile.LoadWorld(false);
                 return base.OnPickup(item);
             }
             return base.OnPickup(item);
@@ -1244,21 +1245,21 @@ namespace ReturnByDeath
             //Main.GoToWorldSelect();
             //THIS IS THE WORLD
             // WorldFile.SaveWorld();
-           // System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "PATH", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld");
+            // System.IO.File.WriteAllText("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + "PATH", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld");
 
             //System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx");
 
-            /*
-              if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx"))
-              {
-                  //System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx");
-                  //System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx");
-              }
-              else
-              {
-                  System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx");
-              }
-             
+            WorldFile.SaveWorld();
+            if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx"))
+            {
+                System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx");
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx");
+            }
+            else
+            {
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx");
+            }
+
             
             if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twldx"))
             {
@@ -1267,11 +1268,11 @@ namespace ReturnByDeath
             }
             else
             {
-                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wld", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx");
+                System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twld", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twldx");
             }
-            */
+            
 
-            //WorldFile.SaveWorld()
+            
             //WorldFile.LoadWorld(false);
             if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Players\\" + Player.name.ToString() + "\\" + Player.name.ToString() + ".Xplr"))
             {
@@ -1393,7 +1394,7 @@ namespace ReturnByDeath
             }
             else
             {
-                /*
+                
                 if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldp"))
                 {
                     System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldp");
@@ -1403,6 +1404,7 @@ namespace ReturnByDeath
                 {
                     System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldx", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".wldp");
                 }
+
                 if (System.IO.File.Exists("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twldp"))
                 {
                     System.IO.File.Delete("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twldp");
@@ -1413,7 +1415,7 @@ namespace ReturnByDeath
                     System.IO.File.Copy("C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twldx", "C:\\Users\\caela\\Documents\\my games\\Terraria\\tModLoader-preview\\Worlds\\" + Main.worldName + ".twldp");
                 }
 
-                */
+                
 
 
 
